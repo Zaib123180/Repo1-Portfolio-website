@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap">
+<title>Zaib Un Nisa — Portfolio</title>
+<style>
+:root{
+  box-sizing:border-box;
+  color-scheme:dark;
+  --bg:#0a0708;--surface:#150e11;--text:#f4ecec;--muted:#a99a9d;--line:#2e1b21;--accent:#d4566e;--accent2:#e58a98;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 110px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(900px 520px at 88% -6%,rgba(128,0,32,.26),transparent 62%) no-repeat,radial-gradient(520px 520px at -6% 45%,rgba(128,0,32,.16),transparent 70%) no-repeat,var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px 40px}
+.bar{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(24,10,14,.97),rgba(8,6,7,.95));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(158,27,52,.55);box-shadow:0 8px 28px rgba(0,0,0,.55),0 1px 0 rgba(158,27,52,.45);padding-top:env(safe-area-inset-top,0px)}
+.bar .inner{max-width:960px;margin:0 auto;padding:12px 22px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.bar .logo{font-weight:800;font-size:20px;letter-spacing:-.02em;text-decoration:none;white-space:nowrap;background:linear-gradient(90deg,#e8788f,#b3243f);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.links{position:relative;display:flex;align-items:center;gap:6px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;min-width:0}
+.links::-webkit-scrollbar{display:none}
+.links a{color:#c9b7ba;text-decoration:none;font-size:15px;font-weight:600;padding:12px 14px;border-radius:10px;transition:color .2s,background .2s}
+.links a:hover{color:#fff;background:rgba(158,27,52,.2)}
+.links a.active{color:#fff;background:rgba(158,27,52,.32)}
+.cvlink{display:inline-flex;align-items:center;gap:8px}
+.dlicon{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;cursor:pointer;color:#fff;background:linear-gradient(135deg,#6d0f26,#a3203d);box-shadow:0 3px 10px rgba(128,0,32,.55);transition:filter .2s,transform .2s}
+.dlicon:hover{filter:brightness(1.15);transform:translateY(1px)}
+.dlicon.err{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.indicator{position:absolute;bottom:0;left:0;height:3px;width:0;border-radius:3px;background:linear-gradient(90deg,#e8788f,#b3243f);box-shadow:0 0 12px rgba(232,120,143,.7);opacity:0;transition:left .35s cubic-bezier(.4,0,.2,1),width .35s cubic-bezier(.4,0,.2,1),opacity .25s}
+@media (max-width:760px){
+  .bar .inner{flex-wrap:wrap;gap:4px;padding:10px 16px 8px}
+  .links{flex-basis:100%}
+  .links a{padding:10px 12px;font-size:14px}
+}
+.hero{padding:70px 0 50px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+.herotxt{flex:1;min-width:0}
+@media (max-width:760px){
+  .hero{padding-top:36px}
+}
+.hero small{color:var(--accent2);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.hero h1{font-size:clamp(38px,8vw,72px);line-height:1.05;margin:14px 0 18px;letter-spacing:-.03em}
+.hero p{font-size:clamp(17px,2.5vw,21px);color:var(--muted);max-width:560px;margin:0 0 28px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:600;font-size:15px;border:0;cursor:pointer;background:linear-gradient(135deg,#6d0f26,#a3203d);color:#fff;box-shadow:0 6px 16px rgba(128,0,32,.45);padding:12px 22px;border-radius:999px;text-decoration:none}
+.btn.ghost{box-shadow:none;background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn.li{border-color:#a3203d;background:rgba(158,27,52,.18)}
+.btn.li:hover{background:rgba(158,27,52,.38)}
+section{padding:44px 0;border-top:1px solid var(--line)}
+h2{font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .2s}
+.card:hover{transform:translateY(-4px)}
+.thumb{height:140px;box-shadow:inset 0 -1px 0 rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
+.card:nth-child(1) .thumb{background:linear-gradient(135deg,#2b0610,#8c1730)}
+.card:nth-child(2) .thumb{background:linear-gradient(135deg,#1c0a0e,#5e0f22)}
+.card:nth-child(3) .thumb{background:linear-gradient(135deg,#5a0f24,#b8334e)}
+.card .body{padding:16px 18px 20px}
+.card h3{margin:0 0 6px;font-size:20px}
+.card p{margin:0 0 12px;color:var(--muted);font-size:15px}
+.tags span{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;margin-right:6px;color:var(--muted)}
+.about p{font-size:18px;margin:0;max-width:680px}
+.about p+p{margin-top:16px}
+h4{margin:0 0 12px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2)}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.skills span:nth-child(even){border-color:var(--accent2)}
+.skills span{font-size:14px;background:var(--surface);border:1px solid var(--line);padding:6px 14px;border-radius:999px}
+.items{display:grid;gap:14px}
+.item{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:12px;padding:16px 18px}
+.item .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.item h3{margin:0;font-size:18px}
+.item .when{color:var(--muted);font-size:14px}
+.item .sub{color:var(--accent);font-size:14px;margin:2px 0 8px}
+.item p{margin:0;color:var(--muted);font-size:15px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.ccard{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;color:var(--text);text-decoration:none;transition:transform .2s,border-color .2s}
+.ccard:hover{transform:translateY(-3px);border-color:var(--accent)}
+.cicon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff}
+.ccard:nth-child(1) .cicon{background:linear-gradient(135deg,#2b0610,#8c1730)}
+.ccard:nth-child(2) .cicon{background:linear-gradient(135deg,#1c0a0e,#5e0f22)}
+.ccard:nth-child(3) .cicon{background:linear-gradient(135deg,#7a1328,#c0344f)}
+.ctext{min-width:0}
+.ctext small{display:block;color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.ctext span{display:block;font-weight:600;font-size:16px;overflow-wrap:anywhere}
+.foot{margin-top:20px;padding:36px 0 0;border-top:1px solid var(--line);text-align:center}
+.foot .fname{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:0 0 10px;background:linear-gradient(90deg,#e8788f,#b3243f);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.foot p{margin:0 auto;max-width:520px;color:var(--muted);font-size:15px}
+.foot .copy{margin-top:18px;font-size:13px;color:var(--muted);opacity:.85}
+.contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.citem{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;color:var(--text);text-decoration:none;transition:transform .2s,border-color .2s}
+.citem:hover{transform:translateY(-3px);border-color:var(--accent2)}
+.cic{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#4a0a18,#b3243f);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ctext{display:flex;flex-direction:column;min-width:0}
+.ctext small{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.ctext strong{font-size:15px;font-weight:600;overflow-wrap:anywhere}
+.cvcard{display:flex;align-items:center;gap:20px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+.cvicon{width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,#4a0a18,#b3243f);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cvtext{flex:1;min-width:200px}
+.cvtext h3{margin:0 0 4px;font-size:20px}
+.cvtext p{margin:0;color:var(--muted);font-size:15px}
+::selection{background:rgba(158,27,52,.6);color:#fff}
+.hero h1,.bar .logo,.foot .fname,.card h3,.item h3,.cvtext h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif}
+.hero h1{font-weight:700;letter-spacing:-.01em}
+
+/* ---------- Animations ---------- */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes navDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+@keyframes avatarIn{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:none}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 8px rgba(158,27,52,.14),0 18px 50px rgba(158,27,52,.4)}50%{box-shadow:0 0 0 13px rgba(158,27,52,.2),0 24px 66px rgba(158,27,52,.62)}}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+.bar{animation:navDown .7s cubic-bezier(.2,.7,.2,1) backwards}
+.herotxt>*{animation:fadeUp .85s cubic-bezier(.2,.7,.2,1) backwards}
+.herotxt>*:nth-child(1){animation-delay:.15s}
+.herotxt>*:nth-child(2){animation-delay:.28s}
+.herotxt>*:nth-child(3){animation-delay:.42s}
+.herotxt>*:nth-child(4){animation-delay:.56s}
+.btn{transition:transform .2s,box-shadow .2s,background .2s,border-color .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(128,0,32,.6)}
+.btn.ghost:hover{box-shadow:none;border-color:var(--accent);background:rgba(158,27,52,.14)}
+.btn:active{transform:translateY(0)}
+.logo{transition:filter .25s}
+.logo:hover{filter:brightness(1.2)}
+.item{transition:transform .25s,border-color .25s}
+.item:hover{transform:translateX(4px);border-color:var(--accent)}
+h2{position:relative}
+h2::after{content:"";display:block;height:2px;width:0;margin-top:10px;background:linear-gradient(90deg,#e8788f,transparent);transition:width .9s cubic-bezier(.2,.7,.2,1) .25s}
+.reveal.in h2::after,html:not(.js) h2::after{width:56px}
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1)}
+.js .reveal.in{opacity:1;transform:none}
+.reveal.in .grid>*,.reveal.in .items>*,.reveal.in .cgrid>*,.reveal.in .cvcard{animation:fadeUp .75s cubic-bezier(.2,.7,.2,1) backwards}
+.reveal.in .grid>*:nth-child(2),.reveal.in .items>*:nth-child(2),.reveal.in .cgrid>*:nth-child(2){animation-delay:.12s}
+.reveal.in .grid>*:nth-child(3),.reveal.in .items>*:nth-child(3),.reveal.in .cgrid>*:nth-child(3){animation-delay:.24s}
+.reveal.in .skills span{animation:pop .5s cubic-bezier(.2,.7,.2,1) backwards}
+.reveal.in .skills span:nth-child(2){animation-delay:.06s}
+.reveal.in .skills span:nth-child(3){animation-delay:.12s}
+.reveal.in .skills span:nth-child(4){animation-delay:.18s}
+.reveal.in .skills span:nth-child(5){animation-delay:.24s}
+.reveal.in .skills span:nth-child(6){animation-delay:.3s}
+/* ---------- More animations ---------- */
+@keyframes shimmer{to{background-position:-300% 0}}
+@keyframes sheen{0%{left:-60%}35%,100%{left:130%}}
+@keyframes ring{0%{box-shadow:0 3px 10px rgba(128,0,32,.55),0 0 0 0 rgba(212,86,110,.55)}70%,100%{box-shadow:0 3px 10px rgba(128,0,32,.55),0 0 0 10px rgba(212,86,110,0)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(70px,-50px) scale(1.18)}}
+.wrap{position:relative;z-index:1}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,#6d0f26,#e8788f);box-shadow:0 0 10px rgba(232,120,143,.6);transition:width .1s linear}
+.hl{background:linear-gradient(90deg,#e8788f,#b3243f);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.links a{transition:color .2s,background .2s,transform .2s}
+.links a:hover{transform:translateY(-1px)}
+.dlicon{animation:ring 2.6s ease-out infinite}
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-20deg);transition:left .6s;pointer-events:none}
+.btn:hover::after{left:130%}
+.thumb svg{transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.card:hover .thumb svg{transform:scale(1.18) rotate(-6deg)}
+.cicon{transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.ccard:hover .cicon{transform:rotate(-8deg) scale(1.1)}
+.skills span{transition:transform .2s,border-color .2s,background .2s}
+.skills span:hover{transform:translateY(-3px);border-color:var(--accent);background:rgba(158,27,52,.2)}
+.tags span{transition:border-color .2s,color .2s}
+.card:hover .tags span{border-color:var(--accent2);color:var(--accent2)}
+.cvicon svg{animation:bob 3.2s ease-in-out infinite}
+/* ---------- Skill levels ---------- */
+.skillgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:30px}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;transition:transform .2s,border-color .2s}
+.skill:hover{transform:translateY(-3px);border-color:var(--accent)}
+.skill .row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.skill b{font-size:15px;font-weight:600}
+.badge{font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.skill.excellent{border-color:rgba(158,27,52,.7);box-shadow:0 0 0 1px rgba(158,27,52,.25),0 8px 22px rgba(128,0,32,.25)}
+.skill.excellent .badge{background:linear-gradient(135deg,#6d0f26,#a3203d);border-color:transparent;color:#fff}
+.meter{height:6px;border-radius:6px;background:rgba(255,255,255,.07);overflow:hidden}
+.meter i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,#8c1730,#d4566e);transition:width 1.1s cubic-bezier(.2,.7,.2,1) .3s}
+.skill.excellent .meter i{background:linear-gradient(90deg,#b3243f,#f0a0b0);box-shadow:0 0 10px rgba(232,120,143,.6)}
+.reveal.in .meter i,html:not(.js) .meter i{width:var(--w)}
+.reveal.in .skillgrid>*{animation:fadeUp .6s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i)*.07s)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none}
+}
+.hero .subtitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 18px;
+}
+
+/* CV preview + zoom button + large view */
+.cv-preview{margin-top:28px;padding:20px;background:var(--surface);border-radius:16px;text-align:center;overflow:visible}
+.cv-preview h3{margin:0 0 18px;color:var(--accent2)}
+.cv-frame{position:relative;display:block;width:100%;max-width:180px;margin:0 auto}
+.cv-image{display:block;width:100%;height:auto;border-radius:8px;cursor:zoom-in;transform:scale(1);transform-origin:center center;transition:transform .3s ease,filter .3s ease;position:relative;z-index:1}
+.cv-frame:hover .cv-image,.cv-frame:focus-within .cv-image{transform:scale(1.15);filter:brightness(.8)}
+.zoom-btn{position:absolute;top:50%;left:50%;z-index:12;width:50px;height:50px;border-radius:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(135deg,#6d0f26,#a3203d);box-shadow:0 8px 22px rgba(0,0,0,.55),0 0 0 4px rgba(255,255,255,.12);opacity:0;transform:translate(-50%,-50%) scale(.7);transition:opacity .25s ease,transform .25s ease,filter .2s}
+.cv-frame:hover .zoom-btn,.cv-frame:focus-within .zoom-btn{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.zoom-btn:hover{filter:brightness(1.2)}
+@media (hover:none){.zoom-btn{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.lightbox{position:fixed;inset:0;z-index:100;display:flex;justify-content:center;align-items:flex-start;overflow-y:auto;padding:64px 20px 32px;background:rgba(6,2,4,.9);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox img{display:block;width:100%;max-width:900px;height:auto;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.7);transform:scale(.96);transition:transform .3s ease}
+.lightbox.open img{transform:scale(1)}
+.lb-close{position:fixed;top:14px;right:16px;z-index:101;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(135deg,#6d0f26,#a3203d);box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.lb-close:hover{filter:brightness(1.2)}
+</style>
+</head>
+<body>
+<nav class="bar">
+  <div class="inner">
+    <a class="logo" href="#home">Zaib Un Nisa </a>
+    <div class="links">
+      <span class="indicator" id="ind"></span>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#interests">Interests</a>
+      <a href="#cv" class="cvlink">CV<span class="dlicon" data-dl role="button" tabindex="0" title="Download CV" aria-label="Download CV"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg></span></a>
+    </div>
+  </div>
+  <div class="progress" id="prog"></div>
+</nav>
+
+<div class="wrap" id="top">
+  <header class="hero" id="home">
+    <div class="herotxt">
+    <h1> <span class="hl">Zaib Un Nisa </span></h1>
+     <p class="subtitle">An AI Student and Future Innovator</p>
+    <p>I’m a <strong>BS Artificial Intelligence student at BZU</strong>, passionate about exploring AI, solving problems, and and turning ideas into meaningful projects. I’m continuously learning and building my skills to create technology that makes a difference.</p>
+    <div class="actions">
+      <a class="btn" href="#interests">See my interests</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+      <a class="btn ghost li" href="Zaib Un Nisa" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
+    </div>
+  </div>
+  </header>
+
+  <section id="about" class="reveal about">
+    <h2>About</h2>
+    <p>As a <strong>BS Artificial Intelligence</strong> student, I believe that technology becomes powerful when it solves real-world problems. My interest in Artificial Intelligence goes beyond learning algorithms — I want to understand how intelligent systems think, learn, and create meaningful impact.</p>
+    <p>I enjoy exploring new ideas, connecting technical knowledge with creative thinking, and discovering opportunities where technology can make a difference. As I grow in this field, I aim to develop solutions that are not only innovative but also practical, responsible, and useful to people.</p>
+    <p>For me, every new concept is an opportunity to think differently, build something valuable, and move one step closer to turning ideas into reality.</p>
+  </section>
+
+  <section id="expertise" class="reveal">
+    <h2>Expertise</h2>
+    <h4>Skills</h4>
+    <div class="skillgrid">
+      <div class="skill" style="--w:30%;--i:0"><div class="row"><b>Python</b><span class="badge">Beginner</span></div><div class="meter"><i></i></div></div>
+      <div class="skill" style="--w:30%;--i:1"><div class="row"><b>C++</b><span class="badge">Beginner</span></div><div class="meter"><i></i></div></div>
+      <div class="skill" style="--w:30%;--i:2"><div class="row"><b>OOP</b><span class="badge">Beginner</span></div><div class="meter"><i></i></div></div>
+      <div class="skill" style="--w:30%;--i:3"><div class="row"><b>DBMS</b><span class="badge">Beginner</span></div><div class="meter"><i></i></div></div>
+      <div class="skill" style="--w:30%;--i:4"><div class="row"><b>PostgreSQL</b><span class="badge">Beginner</span></div><div class="meter"><i></i></div></div>
+      <div class="skill excellent" style="--w:95%;--i:5"><div class="row"><b>MS Word</b><span class="badge">Excellent</span></div><div class="meter"><i></i></div></div>
+      <div class="skill" style="--w:30%;--i:6"><div class="row"><b>MS Excel</b><span class="badge">Beginner</span></div><div class="meter"><i></i></div></div>
+      <div class="skill" style="--w:30%;--i:7"><div class="row"><b>MS Access</b><span class="badge">Beginner</span></div><div class="meter"><i></i></div></div>
+    </div>
+  </section>
+
+  <section id="interests" class="reveal">
+    <h2>Areas of Interest</h2>
+    <div class="grid">
+      <article class="card"><div class="thumb"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div><div class="body"><h3>Artificial Intelligence Fundamentals</h3><p>Learning how intelligent systems solve problems, reason, and make decisions.</p><div class="tags"><span>Reasoning</span><span>Decision-making</span></div></div></article>
+      <article class="card"><div class="thumb"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 7 3 12 8 17"/><polyline points="16 7 21 12 16 17"/><line x1="14" y1="5" x2="10" y2="19"/></svg></div><div class="body"><h3>Programming and Web Development</h3><p>Building foundational programming skills and creating responsive websites using HTML, CSS, and JavaScript.</p><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div></div></article>
+      <article class="card"><div class="thumb"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></div><div class="body"><h3>Problem-Solving</h3><p>Exploring challenges, analyzing problems, and developing practical ideas through logical and creative thinking.</p><div class="tags"><span>Logical thinking</span><span>Creative thinking</span></div></div></article>
+    </div>
+  </section>
+
+  <section id="cv" class="reveal">
+    <h2>CV</h2>
+    <div class="cvcard">
+      <div class="cvicon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+      <div class="cvtext"><h3>Zaib Un Nisa — Curriculum Vitae</h3><p>A complete summary of my education, skills and interests.</p></div>
+      <button class="btn" type="button" data-dl><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg><span>Download CV</span></button>
+    </div>
+    <div class="cv-preview">
+      <h3>CV Preview</h3>
+      <div class="cv-frame">
+        <img src="images/cv.png" alt="Zaib Un Nisa's Curriculum Vitae" class="cv-image" id="cvImage">
+        <button type="button" class="zoom-btn" id="zoomBtn" aria-label="View CV in large size" title="View larger">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal contact">
+    <h2>Contact</h2>
+    <div class="cgrid">
+      <a class="ccard" href="mailto:zaib12112005@gmail.com"><div class="cicon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div class="ctext"><small>Email</small><span>zaib12112005@gmail.com</span></div></a>
+      <a class="ccard" href="tel:+92 329 4763890"><div class="cicon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div><div class="ctext"><small>Mobile</small><span>+92 329 4763890</span></div></a>
+      <a class="ccard" href="Zaib Un Nisa" target="_blank" rel="noopener noreferrer"><div class="cicon"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></div><div class="ctext"><small>LinkedIn</small><span>Zaib Un Nisa</span></div></a>
+    </div>
+  </section>
+
+  <footer class="foot reveal">
+    <div class="fname">Zaib Un Nisa </div>
+    <p>Driven by curiosity, inspired by innovation, and always ready to learn something new.</p>
+    <p>Exploring possibilities. Building ideas. Creating impact.</p>
+    <div class="copy">© 2026Zaib Un Nisa. All rights reserved.</div>
+  </footer>
+
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="CV large view">
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <img id="lbImg" alt="Zaib Un Nisa's Curriculum Vitae (large)">
+</div>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.links a'));
+  var hrefs=links.map(function(a){return a.getAttribute('href');});
+  var ind=document.getElementById('ind');
+  var box=document.querySelector('.links');
+  var ids=['home','about','expertise','interests','cv','contact'];
+  var secs=ids.map(function(id){return document.getElementById(id);});
+  var lock=false,timer=null,current=-1;
+  function setActive(i){
+    current=i;
+    links.forEach(function(a,k){a.classList.toggle('active',k===i);});
+    if(i<0){ind.style.opacity=0;return;}
+    var a=links[i];
+    ind.style.left=a.offsetLeft+'px';
+    ind.style.width=a.offsetWidth+'px';
+    ind.style.opacity=1;
+    box.scrollTo({left:a.offsetLeft-(box.clientWidth-a.offsetWidth)/2,behavior:'smooth'});
+  }
+  function spy(){
+    if(lock)return;
+    var idx=-1;
+    secs.forEach(function(s,k){if(s.getBoundingClientRect().top<=130)idx=hrefs.indexOf('#'+ids[k]);});
+    if(idx!==current)setActive(idx);
+  }
+  function unlockLater(ms){clearTimeout(timer);timer=setTimeout(function(){lock=false;spy();},ms);}
+  window.addEventListener('scroll',function(){if(lock)unlockLater(140);else spy();},{passive:true});
+  links.forEach(function(a,k){
+    a.addEventListener('click',function(){lock=true;setActive(k);unlockLater(900);});
+  });
+  window.addEventListener('resize',function(){setActive(current);});
+  spy();
+
+  // Scroll progress line
+  var prog=document.getElementById('prog'),ticking=false;
+  function prg(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    prog.style.width=(h>0?Math.min(100,window.scrollY/h*100):0)+'%';
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(prg);}},{passive:true});
+  window.addEventListener('resize',prg);
+  prg();
+
+  // Gentle reveal-on-scroll (with fallbacks so no section can stay hidden)
+  var rev=[].slice.call(document.querySelectorAll('.reveal'));
+  function show(el){el.classList.add('in');}
+  function sweep(){
+    var vh=window.innerHeight||document.documentElement.clientHeight;
+    rev.forEach(function(el){
+      if(el.classList.contains('in'))return;
+      if(el.getBoundingClientRect().top<vh-30)show(el);
+    });
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){show(e.target);io.unobserve(e.target);}});
+    },{threshold:0.01});
+    rev.forEach(function(el){io.observe(el);});
+  }
+  window.addEventListener('scroll',sweep,{passive:true});
+  window.addEventListener('resize',sweep);
+  window.addEventListener('load',sweep);
+  document.documentElement.classList.add('js');
+  sweep();
+  var sweeps=0,sweeper=setInterval(function(){
+    sweep();sweeps++;
+    if(sweeps>40||rev.every(function(el){return el.classList.contains('in');}))clearInterval(sweeper);
+  },500);
+
+  // Download the actual CV image
+  function downloadCV() {
+    var link = document.createElement('a');
+    link.href = 'images/cv.png';
+    link.download = 'Zaib_Un_Nisa_CV.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  document.querySelectorAll('[data-dl]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      downloadCV();
+    });
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        downloadCV();
+      }
+    });
+  });
+
+  // CV preview: zoom button opens the CV as a large image
+  var cvImg = document.getElementById('cvImage');
+  var zoomBtn = document.getElementById('zoomBtn');
+  var lightbox = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbClose = document.getElementById('lbClose');
+
+  function openLightbox() {
+    lbImg.src = cvImg.currentSrc || cvImg.src;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lightbox.scrollTop = 0;
+    lbClose.focus();
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    zoomBtn.focus();
+  }
+  zoomBtn.addEventListener('click', openLightbox);
+  cvImg.addEventListener('click', openLightbox);
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+})();
+</script>
+</body>
+</html>
